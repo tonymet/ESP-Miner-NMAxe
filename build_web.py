@@ -2,6 +2,7 @@ import os
 import subprocess
 from shutil import copytree, rmtree, copy2
 from os.path import join, isdir, basename, splitext
+from sys import platform
 import hashlib
 
 
@@ -14,18 +15,16 @@ web_src_dir = join(project_dir, "src", "http_server", "axe-os")
 dist_dir = join(web_src_dir, "dist", "axe-os")
 data_dir = join(project_dir, "data")
 
-
-#npm_path = "C:\\Program Files\\nodejs\\npm.cmd"
-npm_path = "/home/tonymet/.config/nvm/versions/node/v20.11.0/bin/npm"
-
+# default to linux + darwin npm
+npm = "npm"
+if platform == "win32":
+    npm = "npm.cmd"
 
 if isdir(data_dir):
     rmtree(data_dir)
 
-
-subprocess.run([npm_path, "install"], cwd=web_src_dir, check=True)
-subprocess.run([npm_path, "run", "build"], cwd=web_src_dir, check=True)
-
+subprocess.run([npm, "install"], cwd=web_src_dir, check=True)
+subprocess.run([npm, "run", "build"], cwd=web_src_dir, check=True)
 
 os.makedirs(data_dir)
 
