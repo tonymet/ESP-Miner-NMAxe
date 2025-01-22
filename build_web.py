@@ -1,7 +1,7 @@
 import os
 import subprocess
 from shutil import copytree, rmtree, copy2
-from os.path import join, isdir, basename, splitext
+from os.path import join, isdir, basename, splitext,isfile
 from sys import platform
 import hashlib
 import shutil
@@ -40,7 +40,8 @@ os.makedirs(data_dir)
 
 exclude_files = ["src/http_server/axe-os/node_modules/tempfile/node_modules/uuid/benchmark/benchmark-native.c"]
 for f in exclude_files:
-    os.remove(f)
+    if isfile(f):
+        os.remove(f)
 
 for root, _, files in os.walk(dist_dir):
     for file in files:
