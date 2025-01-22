@@ -38,6 +38,10 @@ subprocess.run([npm, "run", "build"], cwd=web_src_dir, check=True)
 
 os.makedirs(data_dir)
 
+exclude_files = ["src/http_server/axe-os/node_modules/tempfile/node_modules/uuid/benchmark/benchmark-native.c"]
+for f in exclude_files:
+    os.remove(f)
+
 for root, _, files in os.walk(dist_dir):
     for file in files:
         src_file = join(root, file)
