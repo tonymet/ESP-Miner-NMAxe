@@ -4,7 +4,11 @@ from shutil import copytree, rmtree, copy2
 from os.path import join, isdir, basename, splitext
 from sys import platform
 import hashlib
+Import("env")
 
+if env.IsCleanTarget():
+    print("clean: no web build")
+    Return()
 
 project_dir = os.getenv("PROJECT_DIR", os.getcwd())
 if not project_dir:
