@@ -15,7 +15,8 @@ dist_dir = join(web_src_dir, "dist", "axe-os")
 data_dir = join(project_dir, "data")
 
 
-npm_path = "C:\\Program Files\\nodejs\\npm.cmd"
+#npm_path = "C:\\Program Files\\nodejs\\npm.cmd"
+npm_path = "/home/tonymet/.config/nvm/versions/node/v20.11.0/bin/npm"
 
 
 if isdir(data_dir):
